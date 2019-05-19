@@ -1,0 +1,25 @@
+<div >
+
+<div *ngIf="product.discount!=null else m" class="item-medium-1__alert">{{product.discount}} %</div>
+<ng-template #m></ng-template>
+  <div class="item-medium-1__image image" [ngStyle]="{'background-image': 'url('+ product.image+')'}">
+      <a href="#" class="item-medium-1__action">Add to Cart</a>
+  </div>
+  <a href="#">
+      <h4>{{product.data.name}}</h4>
+      <div *ngIf="product.discount!=null else l">
+          <del>${{product.price}}</del>
+          <span  class="lable">${{getPriceAfterSale()}}</span>
+      </div>
+      <ng-template #l>
+            <span  class="lable">${{product.price}}</span>
+      </ng-template>
+     
+
+  </a>
+  <div class="crud-actions">
+      <a [routerLink]="['/product','details',product.id]" ><i class="far fa-eye"></i></a>
+      <a [routerLink]="['/product','edit',product.id]"><i class="fas fa-edit"></i></a>
+      <a (click)="onDelete(product.id)"><i class="fas fa-trash-alt"></i></a>
+  </div>
+  <div>
